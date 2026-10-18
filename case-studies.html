@@ -1,0 +1,122 @@
+<!DOCTYPE HTML>
+<!--
+	Forty by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Case Studies - Intelligent Agents E-Portfolio - ADIL ALJASMI</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="assets/css/portfolio.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+		<div id="wrapper">
+			<header id="header">
+				<a href="index.html" class="logo"><strong>IA E-Portfolio</strong> <span>by ADIL ALJASMI</span></a>
+				<nav><a href="artefacts.html" class="top">Artefacts</a><a href="team-project.html" class="top">Team Project</a><a href="individual-project.html" class="top">Individual Project</a><a href="case-studies.html" class="top">Case Studies</a><a href="development.html" class="top">Development</a><a href="references.html" class="top">References</a><a href="#menu">Menu</a></nav>
+			</header>
+			<nav id="menu">
+				<ul class="links">
+					<li><a href="index.html">Home</a></li>
+					<li><a href="artefacts.html">Artefacts</a></li>
+					<li><a href="team-project.html">Team Project</a></li>
+					<li><a href="individual-project.html">Individual Project</a></li>
+					<li><a href="case-studies.html">Case Studies</a></li>
+					<li><a href="development.html">Development</a></li>
+					<li><a href="references.html">References</a></li>
+				</ul>
+				<ul class="actions stacked">
+					<li><a href="https://github.com/adilaljasmi/scholarplan" class="button primary fit">ScholarPlan code (Unit 11)</a></li>
+					<li><a href="https://github.com/adilaljasmi" class="button fit">GitHub</a></li>
+				</ul>
+			</nav>
+			<section id="banner" class="style2">
+				<div class="inner">
+					<header class="major"><h1>Reflective Case Studies</h1></header>
+					<div class="content"><p>AI safety constraints, explainable decisions and bias, grounded in building ScholarPlan.</p></div>
+				</div>
+			</section>
+			<div id="main">
+				<section id="one">
+					<div class="inner">
+<header class="major"><h2>Three reflective case studies</h2></header>
+<p>Each case study comes from my own work on ScholarPlan and follows Rolfe et al.'s (2001) framework. The themes are <a href="#safety">AI safety constraints</a>, <a href="#xai">explainable decisions</a> and <a href="#bias">bias in autonomous decision-making</a>.</p>
+
+<div class="unit" id="safety">
+<h2>Case study 1: AI safety constraints &ndash; bounding an autonomous planner</h2>
+<p><strong>What?</strong> Our Unit 6 design gave the Planner a 20-step budget. The tutor asked what would happen if the Critic kept rejecting the same result, and suggested a cap of three re-planning attempts. In Unit 11 I enforced every bound in code rather than in the prompt. On the fourth failure a subtask is marked &ldquo;unresolvable&rdquo; without calling the LLM. A synthesis rejected twice is replaced by an extractive list of verified claims. If the model returns invalid output twice, a deterministic fallback policy acts instead.</p>
+<p><strong>So what?</strong> What mattered was where the limit lives. A prompt telling the model to stop would itself rely on the model behaving. Amodei et al. (2016) show how unsafe behaviour arises from objectives and side effects the designer did not anticipate. Kambhampati et al. (2024) argue that LLMs should propose while external components verify. Because the bounds were code, termination became something I could test rather than hope for. Functional tests force the re-plan cap and budget exhaustion, and all three live goals finished within budget, using 6.7 steps on average. The cost is that a capped subtask may be abandoned when a fourth attempt might have worked. Safety was traded for completeness, and that trade-off should be deliberate and visible to the user.</p>
+<p><strong>Now what?</strong> For future agents I will define hard limits on steps, retries and cost before writing any prompt. I will enforce those limits outside the model, test each one with forced-failure tests, and report to the user whenever a limit was hit rather than failing silently.</p>
+<div class="evidence"><a href="evidence/unit11-critic-catches-fabrication.png" target="_blank"><img src="evidence/unit11-critic-catches-fabrication.png" alt="Critic blocks a planted false claim before it reaches the report" /><span>Critic blocks a planted false claim before it reaches the report</span></a></div>
+</div>
+
+<div class="unit" id="xai">
+<h2>Case study 2: Explainable decisions &ndash; when the agent's explanation was wrong</h2>
+<p><strong>What?</strong> ScholarPlan records every Thought, Action, Observation, verdict and piece of feedback on the blackboard and exports it as a trace, which a dashboard shows live. In one live evaluation run the Processor twice failed to return valid JSON. The Planner re-planned, but its written Thought blamed &ldquo;irrelevant results&rdquo; and rewrote a good query. The feedback it had read said only that summarisation failed, not why (remediation R15).</p>
+<p><strong>So what?</strong> Without the trace I would have seen only a successful run. The trace exposed a wrong decision, but it also showed the limit of LLM &ldquo;explanations&rdquo;: the Thought was fluent and plausible, yet wrong. Turpin et al. (2023) show that chain-of-thought explanations can misrepresent the real reasons for a model's output. Miller (2019) argues that good explanations are causal. My agent's explanation could only be as causal as the feedback it received. I fixed the root cause rather than the symptom: feedback now states the diagnosis (a processing failure, so the query is not at fault), and a regression test checks this.</p>
+<p><strong>Now what?</strong> I will treat a model's rationale as a hypothesis, not as evidence. In future systems I will log structured, code-generated cause codes alongside any LLM explanation, and judge explainability by whether an explanation can be checked against recorded events.</p>
+<div class="evidence"><a href="evidence/unit11-replanning-feedback.png" target="_blank"><img src="evidence/unit11-replanning-feedback.png" alt="The feedback the Planner read: failure reported without its cause" /><span>The feedback the Planner read: failure reported without its cause</span></a><a href="evidence/unit11-replanning-trace.png" target="_blank"><img src="evidence/unit11-replanning-trace.png" alt="Trace of the same run (2 re-plans)" /><span>Trace of the same run (2 re-plans)</span></a></div>
+</div>
+
+<div class="unit" id="bias">
+<h2>Case study 3: Bias in autonomous decision-making &ndash; what my Retriever could not see</h2>
+<p><strong>What?</strong> ScholarPlan decides by itself which sources reach the report. My retrieval benchmark (ten queries whose targets were papers cited in our Unit 6 report) reached a recall of 0.90. The one miss was Hayes-Roth (1985), the foundational blackboard paper our own design relies on. It has no indexed abstract, and I had filtered out records without abstracts because the Critic can only verify claims against an abstract. Across the targets, arXiv found eight, OpenAlex six and Crossref one.</p>
+<p><strong>So what?</strong> A reasonable technical rule produced a systematic skew against older work. Friedman and Nissenbaum (1996) call this technical bias: it comes from design constraints rather than intent. Together with mainly English sources and ranking by API relevance, which can favour highly cited authors, the agent's &ldquo;autonomous&rdquo; choices reflect its pipeline. Mehrabi et al. (2021) note that bias can enter at data collection as well as in algorithm design. Here my safety goal (only verifiable claims) and coverage pulled in opposite directions. The finding that no single API found everything did, however, justify querying all three.</p>
+<p><strong>Now what?</strong> I stated these biases openly in the README rather than hiding them. Next time I would measure coverage by publication decade and language. I would also add a clearly flagged &ldquo;metadata only, not verified&rdquo; tier, so that foundational work is shown with a warning instead of being silently dropped.</p>
+</div>
+<div class="refs"><h3>References</h3><p>Amodei, D., Olah, C., Steinhardt, J., Christiano, P., Schulman, J. &amp; Man&eacute;, D. (2016) Concrete problems in AI safety. <em>arXiv preprint</em> arXiv:1606.06565. Available from: https://arxiv.org/abs/1606.06565 [Accessed 18 October 2026].</p><p>Friedman, B. &amp; Nissenbaum, H. (1996) Bias in computer systems. <em>ACM Transactions on Information Systems</em> 14(3): 330&ndash;347.</p><p>Hayes-Roth, B. (1985) A blackboard architecture for control. <em>Artificial Intelligence</em> 26(3): 251&ndash;321.</p><p>Kambhampati, S., Valmeekam, K., Guan, L., Verma, M., Stechly, K., Bhambri, S., Saldyt, L. &amp; Murthy, A. (2024) Position: LLMs can't plan, but can help planning in LLM-Modulo frameworks. <em>Proceedings of the 41st International Conference on Machine Learning (ICML 2024)</em>. Vienna: PMLR 235. Available from: https://arxiv.org/abs/2402.01817 [Accessed 18 October 2026].</p><p>Mehrabi, N., Morstatter, F., Saxena, N., Lerman, K. &amp; Galstyan, A. (2021) A survey on bias and fairness in machine learning. <em>ACM Computing Surveys</em> 54(6): 1&ndash;35.</p><p>Miller, T. (2019) Explanation in artificial intelligence: Insights from the social sciences. <em>Artificial Intelligence</em> 267: 1&ndash;38.</p><p>Rolfe, G., Freshwater, D. &amp; Jasper, M. (2001) <em>Critical Reflection in Nursing and the Helping Professions: A User's Guide</em>. Basingstoke: Palgrave Macmillan.</p><p>Turpin, M., Michael, J., Perez, E. &amp; Bowman, S.R. (2023) Language models don't always say what they think: Unfaithful explanations in chain-of-thought prompting. <em>Advances in Neural Information Processing Systems 36 (NeurIPS 2023)</em>. Available from: https://arxiv.org/abs/2305.04388 [Accessed 18 October 2026].</p></div>
+					</div>
+				</section>
+			</div>
+			<section id="contact">
+				<div class="inner">
+					<section class="split">
+						<section>
+							<div class="contact-method">
+								<span class="icon solid alt fa-envelope"></span>
+								<h3>Email</h3>
+								<a href="mailto:adilsahrabghulam@outlook.com">adilsahrabghulam@outlook.com</a>
+							</div>
+						</section>
+						<section>
+							<div class="contact-method">
+								<span class="icon solid alt fa-graduation-cap"></span>
+								<h3>Module</h3>
+								<span>Intelligent Agents (IA_PCOM7E)<br />University of Essex Online</span>
+							</div>
+						</section>
+						<section>
+							<div class="contact-method">
+								<span class="icon solid alt fa-calendar"></span>
+								<h3>Cohort</h3>
+								<span>July 2026</span>
+							</div>
+						</section>
+					</section>
+				</div>
+			</section>
+			<footer id="footer">
+				<div class="inner">
+					<ul class="icons">
+						<li><a href="https://github.com/adilaljasmi" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+						<li><a href="mailto:adilsahrabghulam@outlook.com" class="icon solid alt fa-envelope"><span class="label">Email</span></a></li>
+					</ul>
+					<ul class="copyright">
+						<li>&copy; Adil Aljasmi 2026</li><li>Design: <a href="https://html5up.net">HTML5 UP</a> (CC BY 3.0)</li><li>Academic e-portfolio</li>
+					</ul>
+				</div>
+			</footer>
+		</div>
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/jquery.scrolly.min.js"></script>
+		<script src="assets/js/jquery.scrollex.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+	</body>
+</html>

@@ -17,13 +17,17 @@
 		<div id="wrapper">
 			<header id="header">
 				<a href="index.html" class="logo"><strong>IA E-Portfolio</strong> <span>by ADIL ALJASMI</span></a>
-				<nav><a href="#menu">Menu</a></nav>
+				<nav><a href="artefacts.html" class="top">Artefacts</a><a href="team-project.html" class="top">Team Project</a><a href="individual-project.html" class="top">Individual Project</a><a href="case-studies.html" class="top">Case Studies</a><a href="development.html" class="top">Development</a><a href="references.html" class="top">References</a><a href="#menu">Menu</a></nav>
 			</header>
 			<nav id="menu">
 				<ul class="links">
-							<li><a href="index.html">Home</a></li>
-							<li><a href="artefacts.html">Learning Artefacts</a></li>
-							<li><a href="team-project.html">Team Project (Unit 6)</a></li>
+					<li><a href="index.html">Home</a></li>
+					<li><a href="artefacts.html">Artefacts</a></li>
+					<li><a href="team-project.html">Team Project</a></li>
+					<li><a href="individual-project.html">Individual Project</a></li>
+					<li><a href="case-studies.html">Case Studies</a></li>
+					<li><a href="development.html">Development</a></li>
+					<li><a href="references.html">References</a></li>
 				</ul>
 				<ul class="actions stacked">
 					<li><a href="https://github.com/adilaljasmi/scholarplan" class="button primary fit">ScholarPlan code (Unit 11)</a></li>
@@ -33,48 +37,51 @@
 			<section id="banner" class="style2">
 				<div class="inner">
 					<header class="major"><h1>Team Project (Unit 6)</h1></header>
-					<div class="content"><p>ScholarPlan: an LLM-powered planning agent for academic research &ndash; group design proposal and tutor feedback.</p></div>
+					<div class="content"><p>ScholarPlan: an LLM-powered planning agent for academic research &ndash; group design proposal, my contribution and tutor feedback.</p></div>
 				</div>
 			</section>
 			<div id="main">
 				<section id="one">
 					<div class="inner">
-						<header class="major"><h2>ScholarPlan: design proposal (Unit 6, group assessment, 20%)</h2></header>
-						<p><strong>Brief:</strong> as a team of agent consultants, design an LLM-powered planning agent for academic research and information gathering. The agent must decompose a research goal, retrieve information from online sources, process it and store the results for later use. The report had to justify the requirements, design decisions, development approach and anticipated challenges from the literature, and include at least two diagrams.</p>
-						<h3>Our design</h3>
-						<ul>
-							<li><strong>Hybrid architecture:</strong> one deliberative LLM Planner and four reactive specialists (Retriever, Processor, Critic, Archivist), keeping retrieval, processing and critique as separate failure surfaces (Wooldridge, 2009).</li>
-							<li><strong>Blackboard coordination:</strong> agents never call each other. They read and write a shared SQLite blackboard (Hayes-Roth, 1985), so every intermediate result is persistent and inspectable.</li>
-							<li><strong>ReAct planning with re-planning:</strong> the Planner interleaves thought, action and observation (Yao et al., 2023), and reads written feedback from rejected results before re-planning (Shinn et al., 2023).</li>
-							<li><strong>Independent verification:</strong> a separate Critic model checks that each claim is supported by its cited source, following the argument that LLM plans need external verifiers (Kambhampati et al., 2024).</li>
-							<li><strong>Development approach:</strong> Scrum sprints, with agents specified as roles with responsibilities and permissions, following the Gaia methodology (Wooldridge, Jennings &amp; Kinny, 2000).</li>
-						</ul>
-						<div class="figure"><img src="evidence/unit6-scholarplan-architecture.png" alt="ScholarPlan architecture" /><p>Figure 1 (from the report): five role-specialised agents coordinating through the shared blackboard.</p></div>
-						<div class="figure"><img src="evidence/unit6-scholarplan-activity.png" alt="ScholarPlan activity diagram" /><p>Figure 2: activity view, with the Critic-rejection re-planning loop dashed.</p></div>
-						<div class="figure"><img src="evidence/unit6-scholarplan-sequence.png" alt="ScholarPlan sequence diagram" /><p>Figure 3: sequence view; agents interact only through the blackboard.</p></div>
-						<ul class="actions"><li><a href="evidence/unit6-team-design-proposal.pdf" class="button primary" target="_blank">Read the full design proposal (PDF)</a></li></ul>
-						<h3>Tutor feedback</h3>
-						<p>The tutor described the domain knowledge as outstanding and praised the use of literature, the modular architecture with SQLite as a shared blackboard, the Critic verifier for reducing hallucinations, and the realistic treatment of rate limits, model selection and cost. Three areas for improvement were identified:</p>
-						<ol>
-							<li>Add a static structural view, such as a UML class diagram.</li>
-							<li>Replace broad evaluation criteria with measurable targets (test queries, deduplication thresholds, Critic precision and recall).</li>
-							<li>Define fallback rules for repeated conflicts or rejections, such as a limit of three re-planning attempts per subtask.</li>
-						</ol>
-						<h3>How I acted on the feedback in my implementation (Unit 11)</h3>
-						<ul>
-							<li>Added a UML class diagram drawn from the actual code.</li>
-							<li>Set measurable targets before testing: Critic precision &ge; 0.85 and recall &ge; 0.75, retrieval recall &ge; 0.75 on ten fixed queries, and deduplication and relevance thresholds of 0.92 and 0.30 cosine similarity.</li>
-							<li>Enforced a hard cap of three re-plans per subtask, after which code marks the subtask &ldquo;unresolvable&rdquo; without calling the LLM.</li>
-						</ul>
-						<p>The implementation code, tests and evidence are in my <a href="https://github.com/adilaljasmi/scholarplan">ScholarPlan repository</a>.</p>
-						<div class="refs"><h3>References</h3>
-						<p>Hayes-Roth, B. (1985) A blackboard architecture for control. <em>Artificial Intelligence</em> 26(3): 251&ndash;321.</p>
-						<p>Kambhampati, S., Valmeekam, K., Guan, L., Verma, M., Stechly, K., Bhambri, S., Saldyt, L. &amp; Murthy, A. (2024) Position: LLMs can't plan, but can help planning in LLM-Modulo frameworks. <em>Proceedings of the 41st International Conference on Machine Learning (ICML 2024)</em>. Vienna: PMLR 235. Available from: https://arxiv.org/abs/2402.01817 [Accessed 18 October 2026].</p>
-						<p>Shinn, N., Cassano, F., Gopinath, A., Narasimhan, K. &amp; Yao, S. (2023) Reflexion: Language agents with verbal reinforcement learning. <em>Advances in Neural Information Processing Systems 36 (NeurIPS 2023)</em>. Available from: https://arxiv.org/abs/2303.11366 [Accessed 18 October 2026].</p>
-						<p>Wooldridge, M. (2009) <em>An Introduction to MultiAgent Systems</em>. 2nd ed. Chichester: John Wiley &amp; Sons.</p>
-						<p>Wooldridge, M., Jennings, N.R. &amp; Kinny, D. (2000) The Gaia methodology for agent-oriented analysis and design. <em>Autonomous Agents and Multi-Agent Systems</em> 3(3): 285&ndash;312.</p>
-						<p>Yao, S., Zhao, J., Yu, D., Du, N., Shafran, I., Narasimhan, K. &amp; Cao, Y. (2023) ReAct: Synergizing reasoning and acting in language models. <em>Proceedings of the Eleventh International Conference on Learning Representations (ICLR 2023)</em>. Available from: https://arxiv.org/abs/2210.03629 [Accessed 18 October 2026].</p>
-						</div>
+<header class="major"><h2>ScholarPlan: design proposal (Unit 6, group assessment, 20%)</h2></header>
+<p><strong>Brief:</strong> as a team of agent consultants, design an LLM-powered planning agent for academic research and information gathering. The agent must decompose a research goal, retrieve information from online sources, process it and store the results for later use. The report had to justify the requirements, design decisions, development approach and anticipated challenges from the literature, and include at least two diagrams.</p>
+<h3>Our design</h3>
+<ul>
+<li><strong>Hybrid architecture:</strong> one deliberative LLM Planner and four reactive specialists (Retriever, Processor, Critic, Archivist), keeping retrieval, processing and critique as separate failure surfaces (Wooldridge, 2009).</li>
+<li><strong>Blackboard coordination:</strong> agents never call each other. They read and write a shared SQLite blackboard (Hayes-Roth, 1985), so every intermediate result is persistent and inspectable.</li>
+<li><strong>ReAct planning with re-planning:</strong> the Planner interleaves thought, action and observation (Yao et al., 2023), and reads written feedback from rejected results before re-planning (Shinn et al., 2023).</li>
+<li><strong>Independent verification:</strong> a separate Critic model checks that each claim is supported by its cited source, following the argument that LLM plans need external verifiers (Kambhampati et al., 2024).</li>
+<li><strong>Development approach:</strong> Scrum sprints, with agents specified as roles with responsibilities and permissions, following the Gaia methodology (Wooldridge, Jennings &amp; Kinny, 2000).</li>
+</ul>
+<div class="figure"><img src="evidence/unit6-scholarplan-architecture.png" alt="ScholarPlan architecture" /><p>Figure 1 (from the report): five role-specialised agents coordinating through the shared blackboard.</p></div>
+<div class="figure"><img src="evidence/unit6-scholarplan-activity.png" alt="ScholarPlan activity diagram" /><p>Figure 2: activity view, with the Critic-rejection re-planning loop dashed.</p></div>
+<div class="figure"><img src="evidence/unit6-scholarplan-sequence.png" alt="ScholarPlan sequence diagram" /><p>Figure 3: sequence view; agents interact only through the blackboard.</p></div>
+<ul class="actions"><li><a href="evidence/unit6-team-design-proposal.pdf" class="button primary" target="_blank">Read the full design proposal (PDF)</a></li></ul>
+
+<h3 id="contribution">My contribution</h3>
+<p>The team had three active members (A, B and me); a fourth member joined late and did not contribute to the submitted work. Member A developed the agent model and technology stack on which the design is based, and did the final review and submission. Member B produced the system-design options and diagrams. My role was to write and integrate:</p>
+<ul>
+<li>I revised Member A's system design and wrote Task 2.</li>
+<li>I volunteered to write the first draft of the report, drafted it in full and integrated the team's material, following Member A's stack where drafts differed.</li>
+<li>I led the final revision: I moved the figures into the body to meet the brief, strengthened the challenges section with cited mitigations, made terminology consistent across text and diagrams, and brought the report close to the word limit.</li>
+<li>I helped schedule calls across our time zones and followed up to keep the review moving towards the deadline.</li>
+</ul>
+
+<h3 id="log">Team communication log</h3>
+<p class="note">Summarised from the team's WhatsApp group and Zoom calls (August&ndash;September 2026). Names and contact details are removed. The calls were not minuted, so only their dates are recorded.</p>
+<div class="table-wrapper"><table><thead><tr><th>Date</th><th>Activity and decisions</th></tr></thead><tbody><tr><td>11 Aug</td><td>I joined the group chat; the team had already met by call and met weekly from then on.</td></tr><tr><td>14 Aug</td><td>Zoom call (rescheduled from 13 Aug so that everyone could attend). Members A and B shared working documents.</td></tr><tr><td>15 Aug</td><td>Member C joined, signed the group contract and agreed to share a task with Member B.</td></tr><tr><td>19 Aug</td><td>Scheduling: I proposed Monday 24 Aug at 5 pm UTC so that all members could attend; agreed.</td></tr><tr><td>23 Aug</td><td>I updated the system design drafted by Member A and shared my Task 2 text (kept under 300 words) for review before the call. Member A shared an alternative, longer draft so we had options.</td></tr><tr><td>24 Aug</td><td>Zoom call. Member B shared Task 1.</td></tr><tr><td>28 Aug</td><td>I shared a combined document; where our drafts differed technically, I followed Member A's Azure/GPT stack. Member B shared two more system-design options. I could not attend that day's call at short notice and offered to write the first draft of the paper; the call moved to the next day.</td></tr><tr><td>29 Aug</td><td>Zoom call (3 pm UTC).</td></tr><tr><td>30 Aug</td><td>Member B shared a further diagram option; I started drafting the paper.</td></tr><tr><td>2 Sep</td><td>I shared the full draft for review and invited comments or direct edits. Member C offered work after the remaining tasks had been completed by others; the team agreed to record this honestly in the peer review rather than escalate it.</td></tr><tr><td>3 Sep</td><td>Member A pointed out that the brief does not allow appendices to extend the report. I proposed moving the figures into the body, citing mitigations as well as problems in Section 5 and justifying the API scope in Section 2.1. I also flagged inconsistent naming (&lsquo;LLM Planner&rsquo; vs &lsquo;Project Manager&rsquo;), and the team standardised on &lsquo;Planner&rsquo;. I then completed the revision: figures in the body, mitigations cited, conclusion extended and the text cut to 1,086 words excluding references.</td></tr><tr><td>4 Sep</td><td>Member A added final changes, which I approved, and found that Figure 1 showed direct agent-to-agent links that contradicted the blackboard design. Member B corrected it, and Member A submitted the report.</td></tr><tr><td>5 Sep</td><td>We agreed to use the 1&ndash;5 scale of the Module Resources peer evaluation template, justifying any extreme scores.</td></tr></tbody></table></div>
+
+<h3>Tutor feedback</h3>
+<p>The tutor described the domain knowledge as outstanding and praised the use of literature, the modular architecture with SQLite as a shared blackboard, the Critic verifier for reducing hallucinations, and the realistic treatment of rate limits, model selection and cost. Three areas for improvement were identified:</p>
+<ol>
+<li>Add a static structural view, such as a UML class diagram.</li>
+<li>Replace broad evaluation criteria with measurable targets (test queries, deduplication thresholds, Critic precision and recall).</li>
+<li>Define fallback rules for repeated conflicts or rejections, such as a limit of three re-planning attempts per subtask.</li>
+</ol>
+<p>I addressed all three in my implementation; see the <a href="individual-project.html">Individual Project</a> page.</p>
+<div class="reflection"><h4>Reflection (Rolfe et al., 2001)</h4>
+<p><strong>What?</strong> I took the writer and integrator role in a three-person virtual team spread across time zones, while one member did not take part.</p><p><strong>So what?</strong> Integrating other people's work meant making judgement calls, such as following Member A's stack where our drafts differed, and accepting corrections. Member A's check of Figure 1 caught a diagram that contradicted our own blackboard design. When the late member offered work two days before the deadline, after the remaining tasks had been completed by others, I responded bluntly in the moment; the team's calmer decision to record the issue honestly in the peer review was the more professional route. Agreeing roles, deadlines and a review step early is what made the work hold together.</p><p><strong>Now what?</strong> In future teams I will agree deliverables and internal deadlines in writing at the start, keep one shared document as the source of truth, and raise contribution problems early and factually, through the agreed process.</p></div>
+<div class="refs"><h3>References</h3><p>Hayes-Roth, B. (1985) A blackboard architecture for control. <em>Artificial Intelligence</em> 26(3): 251&ndash;321.</p><p>Kambhampati, S., Valmeekam, K., Guan, L., Verma, M., Stechly, K., Bhambri, S., Saldyt, L. &amp; Murthy, A. (2024) Position: LLMs can't plan, but can help planning in LLM-Modulo frameworks. <em>Proceedings of the 41st International Conference on Machine Learning (ICML 2024)</em>. Vienna: PMLR 235. Available from: https://arxiv.org/abs/2402.01817 [Accessed 18 October 2026].</p><p>Rolfe, G., Freshwater, D. &amp; Jasper, M. (2001) <em>Critical Reflection in Nursing and the Helping Professions: A User's Guide</em>. Basingstoke: Palgrave Macmillan.</p><p>Shinn, N., Cassano, F., Gopinath, A., Narasimhan, K. &amp; Yao, S. (2023) Reflexion: Language agents with verbal reinforcement learning. <em>Advances in Neural Information Processing Systems 36 (NeurIPS 2023)</em>. Available from: https://arxiv.org/abs/2303.11366 [Accessed 18 October 2026].</p><p>Wooldridge, M. (2009) <em>An Introduction to MultiAgent Systems</em>. 2nd ed. Chichester: John Wiley &amp; Sons.</p><p>Wooldridge, M., Jennings, N.R. &amp; Kinny, D. (2000) The Gaia methodology for agent-oriented analysis and design. <em>Autonomous Agents and Multi-Agent Systems</em> 3(3): 285&ndash;312.</p><p>Yao, S., Zhao, J., Yu, D., Du, N., Shafran, I., Narasimhan, K. &amp; Cao, Y. (2023) ReAct: Synergizing reasoning and acting in language models. <em>Proceedings of the Eleventh International Conference on Learning Representations (ICLR 2023)</em>. Available from: https://arxiv.org/abs/2210.03629 [Accessed 18 October 2026].</p></div>
 					</div>
 				</section>
 			</div>
@@ -91,8 +98,8 @@
 						<section>
 							<div class="contact-method">
 								<span class="icon solid alt fa-graduation-cap"></span>
-								<h3>Programme</h3>
-								<span>Intelligent Agents module (IA_PCOM7E)<br />University of Essex Online</span>
+								<h3>Module</h3>
+								<span>Intelligent Agents (IA_PCOM7E)<br />University of Essex Online</span>
 							</div>
 						</section>
 						<section>
