@@ -1,0 +1,128 @@
+<!DOCTYPE HTML>
+<!--
+	Forty by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Team Project - Intelligent Agents E-Portfolio - ADIL ALJASMI</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="assets/css/portfolio.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+		<div id="wrapper">
+			<header id="header">
+				<a href="index.html" class="logo"><strong>IA E-Portfolio</strong> <span>by ADIL ALJASMI</span></a>
+				<nav><a href="#menu">Menu</a></nav>
+			</header>
+			<nav id="menu">
+				<ul class="links">
+							<li><a href="index.html">Home</a></li>
+							<li><a href="artefacts.html">Learning Artefacts</a></li>
+							<li><a href="team-project.html">Team Project (Unit 6)</a></li>
+				</ul>
+				<ul class="actions stacked">
+					<li><a href="https://github.com/adilaljasmi/scholarplan" class="button primary fit">ScholarPlan code (Unit 11)</a></li>
+					<li><a href="https://github.com/adilaljasmi" class="button fit">GitHub</a></li>
+				</ul>
+			</nav>
+			<section id="banner" class="style2">
+				<div class="inner">
+					<header class="major"><h1>Team Project (Unit 6)</h1></header>
+					<div class="content"><p>ScholarPlan: an LLM-powered planning agent for academic research &ndash; group design proposal and tutor feedback.</p></div>
+				</div>
+			</section>
+			<div id="main">
+				<section id="one">
+					<div class="inner">
+						<header class="major"><h2>ScholarPlan: design proposal (Unit 6, group assessment, 20%)</h2></header>
+						<p><strong>Brief:</strong> as a team of agent consultants, design an LLM-powered planning agent for academic research and information gathering. The agent must decompose a research goal, retrieve information from online sources, process it and store the results for later use. The report had to justify the requirements, design decisions, development approach and anticipated challenges from the literature, and include at least two diagrams.</p>
+						<h3>Our design</h3>
+						<ul>
+							<li><strong>Hybrid architecture:</strong> one deliberative LLM Planner and four reactive specialists (Retriever, Processor, Critic, Archivist), keeping retrieval, processing and critique as separate failure surfaces (Wooldridge, 2009).</li>
+							<li><strong>Blackboard coordination:</strong> agents never call each other. They read and write a shared SQLite blackboard (Hayes-Roth, 1985), so every intermediate result is persistent and inspectable.</li>
+							<li><strong>ReAct planning with re-planning:</strong> the Planner interleaves thought, action and observation (Yao et al., 2023), and reads written feedback from rejected results before re-planning (Shinn et al., 2023).</li>
+							<li><strong>Independent verification:</strong> a separate Critic model checks that each claim is supported by its cited source, following the argument that LLM plans need external verifiers (Kambhampati et al., 2024).</li>
+							<li><strong>Development approach:</strong> Scrum sprints, with agents specified as roles with responsibilities and permissions, following the Gaia methodology (Wooldridge, Jennings &amp; Kinny, 2000).</li>
+						</ul>
+						<div class="figure"><img src="evidence/unit6-scholarplan-architecture.png" alt="ScholarPlan architecture" /><p>Figure 1 (from the report): five role-specialised agents coordinating through the shared blackboard.</p></div>
+						<div class="figure"><img src="evidence/unit6-scholarplan-activity.png" alt="ScholarPlan activity diagram" /><p>Figure 2: activity view, with the Critic-rejection re-planning loop dashed.</p></div>
+						<div class="figure"><img src="evidence/unit6-scholarplan-sequence.png" alt="ScholarPlan sequence diagram" /><p>Figure 3: sequence view; agents interact only through the blackboard.</p></div>
+						<ul class="actions"><li><a href="evidence/unit6-team-design-proposal.pdf" class="button primary" target="_blank">Read the full design proposal (PDF)</a></li></ul>
+						<h3>Tutor feedback</h3>
+						<p>The tutor described the domain knowledge as outstanding and praised the use of literature, the modular architecture with SQLite as a shared blackboard, the Critic verifier for reducing hallucinations, and the realistic treatment of rate limits, model selection and cost. Three areas for improvement were identified:</p>
+						<ol>
+							<li>Add a static structural view, such as a UML class diagram.</li>
+							<li>Replace broad evaluation criteria with measurable targets (test queries, deduplication thresholds, Critic precision and recall).</li>
+							<li>Define fallback rules for repeated conflicts or rejections, such as a limit of three re-planning attempts per subtask.</li>
+						</ol>
+						<h3>How I acted on the feedback in my implementation (Unit 11)</h3>
+						<ul>
+							<li>Added a UML class diagram drawn from the actual code.</li>
+							<li>Set measurable targets before testing: Critic precision &ge; 0.85 and recall &ge; 0.75, retrieval recall &ge; 0.75 on ten fixed queries, and deduplication and relevance thresholds of 0.92 and 0.30 cosine similarity.</li>
+							<li>Enforced a hard cap of three re-plans per subtask, after which code marks the subtask &ldquo;unresolvable&rdquo; without calling the LLM.</li>
+						</ul>
+						<p>The implementation code, tests and evidence are in my <a href="https://github.com/adilaljasmi/scholarplan">ScholarPlan repository</a>.</p>
+						<div class="refs"><h3>References</h3>
+						<p>Hayes-Roth, B. (1985) A blackboard architecture for control. <em>Artificial Intelligence</em> 26(3): 251&ndash;321.</p>
+						<p>Kambhampati, S., Valmeekam, K., Guan, L., Verma, M., Stechly, K., Bhambri, S., Saldyt, L. &amp; Murthy, A. (2024) Position: LLMs can't plan, but can help planning in LLM-Modulo frameworks. <em>Proceedings of the 41st International Conference on Machine Learning (ICML 2024)</em>. Vienna: PMLR 235. Available from: https://arxiv.org/abs/2402.01817 [Accessed 18 October 2026].</p>
+						<p>Shinn, N., Cassano, F., Gopinath, A., Narasimhan, K. &amp; Yao, S. (2023) Reflexion: Language agents with verbal reinforcement learning. <em>Advances in Neural Information Processing Systems 36 (NeurIPS 2023)</em>. Available from: https://arxiv.org/abs/2303.11366 [Accessed 18 October 2026].</p>
+						<p>Wooldridge, M. (2009) <em>An Introduction to MultiAgent Systems</em>. 2nd ed. Chichester: John Wiley &amp; Sons.</p>
+						<p>Wooldridge, M., Jennings, N.R. &amp; Kinny, D. (2000) The Gaia methodology for agent-oriented analysis and design. <em>Autonomous Agents and Multi-Agent Systems</em> 3(3): 285&ndash;312.</p>
+						<p>Yao, S., Zhao, J., Yu, D., Du, N., Shafran, I., Narasimhan, K. &amp; Cao, Y. (2023) ReAct: Synergizing reasoning and acting in language models. <em>Proceedings of the Eleventh International Conference on Learning Representations (ICLR 2023)</em>. Available from: https://arxiv.org/abs/2210.03629 [Accessed 18 October 2026].</p>
+						</div>
+					</div>
+				</section>
+			</div>
+			<section id="contact">
+				<div class="inner">
+					<section class="split">
+						<section>
+							<div class="contact-method">
+								<span class="icon solid alt fa-envelope"></span>
+								<h3>Email</h3>
+								<a href="mailto:adilsahrabghulam@outlook.com">adilsahrabghulam@outlook.com</a>
+							</div>
+						</section>
+						<section>
+							<div class="contact-method">
+								<span class="icon solid alt fa-graduation-cap"></span>
+								<h3>Programme</h3>
+								<span>Intelligent Agents module (IA_PCOM7E)<br />University of Essex Online</span>
+							</div>
+						</section>
+						<section>
+							<div class="contact-method">
+								<span class="icon solid alt fa-calendar"></span>
+								<h3>Cohort</h3>
+								<span>July 2026</span>
+							</div>
+						</section>
+					</section>
+				</div>
+			</section>
+			<footer id="footer">
+				<div class="inner">
+					<ul class="icons">
+						<li><a href="https://github.com/adilaljasmi" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+						<li><a href="mailto:adilsahrabghulam@outlook.com" class="icon solid alt fa-envelope"><span class="label">Email</span></a></li>
+					</ul>
+					<ul class="copyright">
+						<li>&copy; Adil Aljasmi 2026</li><li>Design: <a href="https://html5up.net">HTML5 UP</a> (CC BY 3.0)</li><li>Academic e-portfolio</li>
+					</ul>
+				</div>
+			</footer>
+		</div>
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/jquery.scrolly.min.js"></script>
+		<script src="assets/js/jquery.scrollex.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+	</body>
+</html>

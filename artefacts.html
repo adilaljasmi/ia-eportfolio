@@ -1,0 +1,152 @@
+<!DOCTYPE HTML>
+<!--
+	Forty by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Learning Artefacts - Intelligent Agents E-Portfolio - ADIL ALJASMI</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="assets/css/portfolio.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+		<div id="wrapper">
+			<header id="header">
+				<a href="index.html" class="logo"><strong>IA E-Portfolio</strong> <span>by ADIL ALJASMI</span></a>
+				<nav><a href="#menu">Menu</a></nav>
+			</header>
+			<nav id="menu">
+				<ul class="links">
+							<li><a href="index.html">Home</a></li>
+							<li><a href="artefacts.html">Learning Artefacts</a></li>
+							<li><a href="team-project.html">Team Project (Unit 6)</a></li>
+				</ul>
+				<ul class="actions stacked">
+					<li><a href="https://github.com/adilaljasmi/scholarplan" class="button primary fit">ScholarPlan code (Unit 11)</a></li>
+					<li><a href="https://github.com/adilaljasmi" class="button fit">GitHub</a></li>
+				</ul>
+			</nav>
+			<section id="banner" class="style2">
+				<div class="inner">
+					<header class="major"><h1>Learning Artefacts</h1></header>
+					<div class="content"><p>Unit-by-unit evidence: discussion posts, wiki contributions, exercises and reflections.</p></div>
+				</div>
+			</section>
+			<div id="main">
+				<section id="one">
+					<div class="inner">
+						<p class="toc"><strong>Jump to:</strong> <a href="#unit1">Unit 1</a> <a href="#unit2">Unit 2</a> <a href="#unit3">Unit 3</a> <a href="#unit4">Unit 4</a> <a href="#unit6">Unit 6</a> <a href="#unit8">Unit 8</a></p>
+						<div class="unit" id="unit1">
+<h2>Unit 1: Introduction to Agent-Based Computing</h2>
+<p class="topic">Collaborative Discussion 1 &middot; Initial post</p>
+<p>The unit looked at the trends in computing behind the rise of agents and at what makes a program autonomous. In my initial post I argued that agents emerged from five long-term trends in computing, namely ubiquity, interconnection, intelligence, delegation and human-orientation (Wooldridge, 2009). I also argued that agent-oriented decomposition suits complex, distributed problems (Jennings, 2000). I set out four organisational benefits (robustness and scalability, flexibility, decision support and efficiency) and ended with a caution: interactions between autonomous agents can produce unpredictable outcomes, so agents should be used where problems are genuinely distributed and dynamic.</p>
+<div class="evidence"><a href="evidence/unit1-discussion1-initial-post.png" target="_blank"><img src="evidence/unit1-discussion1-initial-post.png" alt="Initial post (full screenshot)" /><span>Initial post (full screenshot)</span></a></div>
+<div class="reflection"><h4>Reflection (Rolfe et al., 2001)</h4>
+<p><strong>What?</strong> I wrote my first post on why agent-based systems emerged and what they offer organisations, building it mainly on foundational sources.</p><p><strong>So what?</strong> The benefits I listed came from the literature and were stated in general terms. Only the final paragraph asked when they might not hold. Looking back, the post described agents well but did not yet test the claims against real cases.</p><p><strong>Now what?</strong> I want my later posts to pair each claimed benefit with evidence of where it fails. This became the main thread of the discussion in Units 2 and 3.</p></div>
+</div><div class="unit" id="unit2">
+<h2>Unit 2: Introducing First Order Logic</h2>
+<p class="topic">Collaborative Discussion 1 &middot; Peer responses</p>
+<p>The seminar introduced first-order logic, the notation behind agents' knowledge representation, which I later used directly when writing KIF content in Unit 6. In the discussion I replied to three peers, each time proposing preventive measures rather than only agreeing:</p>
+<ul>
+<li><strong>Resilience of decentralised control:</strong> an advisory agent with a global view, like the staff holons in the PROSA architecture (Van Brussel et al., 1998), that can warn of deadlock without becoming a central point of failure. I also suggested transfer-of-control strategies with deadlines for when no human is available to approve (Scerri, Pynadath &amp; Tambe, 2002).</li>
+<li><strong>Emergent failure:</strong> using the 2010 Flash Crash (Kirilenko et al., 2017), I argued that decentralisation swaps one failure mode for another. I proposed system-level circuit breakers, model checking of BDI programs before deployment (Bordini et al., 2006), and trust and reputation models for open systems (Ramchurn, Huynh &amp; Jennings, 2004).</li>
+<li><strong>Accountability:</strong> using <em>Moffatt v. Air Canada</em> (2024), where the airline was held liable for its chatbot's advice, I argued for proportionate rather than limited oversight, with least-privilege tool access (OWASP Foundation, 2024).</li>
+</ul>
+<div class="evidence"><a href="evidence/unit2-discussion1-peer-response-1.png" target="_blank"><img src="evidence/unit2-discussion1-peer-response-1.png" alt="Peer response 1 (resilience)" /><span>Peer response 1 (resilience)</span></a><a href="evidence/unit2-discussion1-peer-response-2.png" target="_blank"><img src="evidence/unit2-discussion1-peer-response-2.png" alt="Peer response 2 (emergent failure)" /><span>Peer response 2 (emergent failure)</span></a><a href="evidence/unit2-discussion1-peer-response-3.png" target="_blank"><img src="evidence/unit2-discussion1-peer-response-3.png" alt="Peer response 3 (accountability)" /><span>Peer response 3 (accountability)</span></a></div>
+<div class="reflection"><h4>Reflection (Rolfe et al., 2001)</h4>
+<p><strong>What?</strong> I replied to three peers and grounded each reply in a concrete incident or architecture.</p><p><strong>So what?</strong> Answering other people's arguments pushed me from describing benefits to designing safeguards. Each reply ended with a measure that could actually be built: a monitor, a verification step or a permission limit. The Air Canada case was especially useful, because it showed that autonomy can be delegated but accountability cannot.</p><p><strong>Now what?</strong> I will treat oversight as something to design in proportion to risk. In my own implementation (Unit 11) this became hard limits that code enforces rather than the language model: a step budget, a cap of three re-plans per subtask and a deterministic fallback.</p></div>
+</div><div class="unit" id="unit3">
+<h2>Unit 3: Agent Architectures</h2>
+<p class="topic">Collaborative Discussion 1 &middot; Summary post</p>
+<p>The unit compared symbolic, reactive and belief-desire-intention (BDI) architectures. In my summary post I brought the discussion together. Peers had added the main agent models, namely reactive architectures that reject symbolic world models (Brooks, 1991), BDI agents (Rao &amp; Georgeff, 1995) and hybrids, so the right choice depends on the environment. My main revision was that the benefits of agents are conditional, and the summary listed the safeguards our exchanges had identified. I concluded that autonomy is a design parameter rather than a default.</p>
+<div class="evidence"><a href="evidence/unit3-discussion1-summary-post.png" target="_blank"><img src="evidence/unit3-discussion1-summary-post.png" alt="Summary post" /><span>Summary post</span></a></div>
+<div class="reflection"><h4>Reflection (Rolfe et al., 2001)</h4>
+<p><strong>What?</strong> I summarised a discussion that had changed my original position.</p><p><strong>So what?</strong> Comparing my initial post with the summary shows the change: I started by listing benefits and finished by stating the conditions under which they hold. Reading peers' choices of agent model also made clear that architecture selection is a trade-off between responsiveness and deliberation, not a matter of picking the newest approach.</p><p><strong>Now what?</strong> When I design an agent, I will justify the architecture against the environment it must work in. Our team did this in Unit 6, choosing a hybrid design with one deliberative planner and reactive specialists.</p></div>
+</div><div class="unit" id="unit4">
+<h2>Unit 4: Hybrid Agent Architectures</h2>
+<p class="topic">Wiki contribution &middot; &ldquo;Layered Architecture&rdquo;</p>
+<p>I wrote the glossary entry on layered architectures, the most common way to build a hybrid agent. It contrasts <strong>horizontal layering</strong> (every layer sees input and proposes actions, as in TouringMachines (Ferguson, 1992), and needs a mediator to resolve conflicts) with <strong>vertical layering</strong> (control passes through the layers, as in InteRRaP (M&uuml;ller, 1996), so there are fewer interactions but less fault tolerance). It also mentions the three-layer (3T) architecture used in robotics (Gat, 1998), and notes that layered designs can be hard to verify because behaviour emerges from interactions between layers.</p>
+<div class="evidence"><a href="evidence/unit4-wiki-layered-architecture.png" target="_blank"><img src="evidence/unit4-wiki-layered-architecture.png" alt="Wiki entry: Layered Architecture" /><span>Wiki entry: Layered Architecture</span></a></div>
+<div class="reflection"><h4>Reflection (Rolfe et al., 2001)</h4>
+<p><strong>What?</strong> I produced a concise, referenced wiki entry explaining how hybrid agents are organised into layers.</p><p><strong>So what?</strong> Writing for a shared glossary forced me to explain the trade-offs precisely. Horizontal layering risks a mediator bottleneck, while vertical layering fails if any one layer fails. The same tension appeared in our team design: the shared blackboard decouples the agents but concentrates risk in one component.</p><p><strong>Now what?</strong> In future designs I will name the single point of failure explicitly and state how it is mitigated. Our design proposal did this for the blackboard, using atomic SQLite transactions and a bounded step budget.</p></div>
+</div><div class="unit" id="unit6">
+<h2>Unit 6: Agent Communication &ndash; Creating Agent Dialogues</h2>
+<p class="topic">e-Portfolio activity &middot; KQML and KIF &middot; plus team design proposal</p>
+<p><strong>Task:</strong> write a KQML/KIF dialogue in which Alice, a procurement agent, asks Bob, a warehouse stock agent, about the available stock of 50-inch televisions and their number of HDMI slots.</p>
+<p>I wrote an eight-message dialogue. Alice uses <code>ask-all</code> to find every 50-inch model and its stock, <code>ask-if</code> with a KIF quantifier to check that at least 100 units are available, and <code>ask-one</code> to retrieve the HDMI slots for each model. Bob answers each with <code>tell</code>, linked to the question by <code>:in-reply-to</code>. To check that the dialogue is well formed, I built a small Python simulation in which Bob answers from a KIF knowledge base (the stock figures are illustrative). I then ran eight experiments:</p>
+<ul>
+<li>An unknown model returned <code>sorry</code>: Bob understood the question but had no answer.</li>
+<li>A malformed message, a different ontology or a misspelt relation (<code>hdmi-slots</code> instead of <code>hdmi-ports</code>) returned <code>error</code>.</li>
+<li><code>ask-one</code> returned only one of the two 50-inch models, so a procurement agent using it would underestimate stock.</li>
+<li>After a simulated shipment, the same <code>ask-if</code> changed from <code>tell</code> to <code>untell</code>.</li>
+</ul>
+<div class="figure"><img src="evidence/unit6-alice-bob-sequence.png" alt="Alice and Bob KQML message sequence" /><p>Figure: KQML message sequence between Alice and Bob, generated from the simulation.</p></div>
+<ul class="actions"><li><a href="evidence/unit6-kqml-kif-dialogue.html" class="button small" target="_blank">View notebook (HTML)</a></li><li><a href="evidence/unit6-kqml-kif-dialogue.ipynb" class="button small">Download notebook (.ipynb)</a></li><li><a href="team-project.html" class="button small primary">Team design proposal (Unit 6 assessment)</a></li></ul>
+<div class="reflection"><h4>Reflection (Rolfe et al., 2001)</h4>
+<p><strong>What?</strong> I wrote the dialogue by hand, then tested it in code.</p><p><strong>So what?</strong> The simulation exposed decisions that a hand-written dialogue hides: which performative to use when a product is unknown, how to answer a false <code>ask-if</code>, and how exactly both agents must name relations. The misspelt-relation test was the most telling, because two agents can share KQML and KIF and still fail if their vocabularies differ (Finin et al., 1994). This is the same problem our team handled in the ScholarPlan design by requiring schema-valid JSON between agents.</p><p><strong>Now what?</strong> In team projects I will agree shared message schemas and vocabularies early and test them with edge cases, rather than assuming a common protocol is enough.</p></div>
+</div><div class="unit" id="unit8">
+<h2>Unit 8: Natural Language Processing &ndash; Creating Parse Trees</h2>
+<p class="topic">e-Portfolio activity &middot; constituency parsing</p>
+<p><strong>Task:</strong> create constituency parse trees for <em>The government raised interest rates</em>, <em>The internet gives everyone a voice</em> and <em>The man saw the dog with the telescope</em>.</p>
+<p>Rather than only drawing the trees, I wrote a small context-free grammar and a parser that returns every tree the grammar allows, and then plotted them. The first two sentences have one tree each: <em>interest rates</em> is a noun compound, and <em>gives</em> takes two objects. The third sentence has <strong>two</strong> trees. If <em>with the telescope</em> attaches to the verb phrase, the man uses the telescope; if it attaches to the noun phrase, the dog has it. In experiments, removing any one grammar rule left a sentence with no parse. Adding further prepositional phrases increased the number of trees from 1 to 429, exactly the Catalan numbers reported by Church &amp; Patil (1982).</p>
+<div class="figure"><img src="evidence/unit8-all-parse-trees.png" alt="Parse trees for the three sentences" /><p>Figure: parse trees 1, 2, 3a (verb-phrase attachment) and 3b (noun-phrase attachment).</p></div>
+<ul class="actions"><li><a href="evidence/unit8-parse-trees.html" class="button small" target="_blank">View notebook (HTML)</a></li><li><a href="evidence/unit8-parse-trees.ipynb" class="button small">Download notebook (.ipynb)</a></li><li><a href="evidence/unit8-pp-attachment-growth.png" class="button small" target="_blank">Ambiguity growth chart</a></li></ul>
+<div class="reflection"><h4>Reflection (Rolfe et al., 2001)</h4>
+<p><strong>What?</strong> I produced the trees and verified them with a parser of my own.</p><p><strong>So what?</strong> The third sentence showed that syntax alone cannot decide meaning. A language-processing agent needs context or statistics about which words usually go together to choose between parses (Hindle &amp; Rooth, 1993). The growth experiment showed how quickly this becomes a practical problem.</p><p><strong>Now what?</strong> When an agent reads natural language, I will not treat a single parse as the truth. I will design it to detect ambiguity and resolve it with context, or to ask for clarification.</p></div>
+</div>
+						<div class="refs"><h3>References</h3><p>Bordini, R.H., Fisher, M., Visser, W. &amp; Wooldridge, M. (2006) Verifying multi-agent programs by model checking. <em>Autonomous Agents and Multi-Agent Systems</em> 12(2): 239&ndash;256.</p><p>Brooks, R.A. (1991) Intelligence without representation. <em>Artificial Intelligence</em> 47(1&ndash;3): 139&ndash;159.</p><p>Church, K. &amp; Patil, R. (1982) Coping with syntactic ambiguity or how to put the block in the box on the table. <em>American Journal of Computational Linguistics</em> 8(3&ndash;4): 139&ndash;149.</p><p>Finin, T., Fritzson, R., McKay, D. &amp; McEntire, R. (1994) KQML as an agent communication language. <em>Proceedings of the Third International Conference on Information and Knowledge Management (CIKM '94)</em>. Gaithersburg, Maryland. New York: ACM. 456&ndash;463.</p><p>Ferguson, I.A. (1992) <em>TouringMachines: An Architecture for Dynamic, Rational, Mobile Agents</em>. Technical Report UCAM-CL-TR-273. Cambridge: University of Cambridge Computer Laboratory.</p><p>Gat, E. (1998) On three-layer architectures. In: Kortenkamp, D., Bonasso, R.P. &amp; Murphy, R. (eds.) <em>Artificial Intelligence and Mobile Robots</em>. Menlo Park: AAAI Press. 195&ndash;210.</p><p>Hindle, D. &amp; Rooth, M. (1993) Structural ambiguity and lexical relations. <em>Computational Linguistics</em> 19(1): 103&ndash;120.</p><p>Jennings, N.R. (2000) On agent-based software engineering. <em>Artificial Intelligence</em> 117(2): 277&ndash;296.</p><p>Kirilenko, A., Kyle, A.S., Samadi, M. &amp; Tuzun, T. (2017) The Flash Crash: High-frequency trading in an electronic market. <em>The Journal of Finance</em> 72(3): 967&ndash;998.</p><p>Moffatt v. Air Canada (2024) BCCRT 149.</p><p>M&uuml;ller, J.P. (1996) <em>The Design of Intelligent Agents: A Layered Approach</em>. Lecture Notes in Artificial Intelligence 1177. Berlin: Springer.</p><p>OWASP Foundation (2024) LLM06:2025 Excessive Agency. <em>OWASP Top 10 for LLM Applications 2025</em>. Available from: https://genai.owasp.org/llmrisk/llm062025-excessive-agency/ [Accessed 18 October 2026].</p><p>Ramchurn, S.D., Huynh, D. &amp; Jennings, N.R. (2004) Trust in multi-agent systems. <em>The Knowledge Engineering Review</em> 19(1): 1&ndash;25.</p><p>Rao, A.S. &amp; Georgeff, M.P. (1995) BDI agents: From theory to practice. <em>Proceedings of the First International Conference on Multi-Agent Systems (ICMAS-95)</em>. San Francisco, 12&ndash;14 June. Menlo Park: AAAI Press. 312&ndash;319.</p><p>Rolfe, G., Freshwater, D. &amp; Jasper, M. (2001) <em>Critical Reflection in Nursing and the Helping Professions: A User's Guide</em>. Basingstoke: Palgrave Macmillan.</p><p>Scerri, P., Pynadath, D.V. &amp; Tambe, M. (2002) Towards adjustable autonomy for the real world. <em>Journal of Artificial Intelligence Research</em> 17: 171&ndash;228.</p><p>Van Brussel, H., Wyns, J., Valckenaers, P., Bongaerts, L. &amp; Peeters, P. (1998) Reference architecture for holonic manufacturing systems: PROSA. <em>Computers in Industry</em> 37(3): 255&ndash;274.</p><p>Wooldridge, M. (2009) <em>An Introduction to MultiAgent Systems</em>. 2nd ed. Chichester: John Wiley &amp; Sons.</p><p>Full reference lists for each post are shown in the linked screenshots and notebooks.</p></div>
+					</div>
+				</section>
+			</div>
+			<section id="contact">
+				<div class="inner">
+					<section class="split">
+						<section>
+							<div class="contact-method">
+								<span class="icon solid alt fa-envelope"></span>
+								<h3>Email</h3>
+								<a href="mailto:adilsahrabghulam@outlook.com">adilsahrabghulam@outlook.com</a>
+							</div>
+						</section>
+						<section>
+							<div class="contact-method">
+								<span class="icon solid alt fa-graduation-cap"></span>
+								<h3>Programme</h3>
+								<span>Intelligent Agents module (IA_PCOM7E)<br />University of Essex Online</span>
+							</div>
+						</section>
+						<section>
+							<div class="contact-method">
+								<span class="icon solid alt fa-calendar"></span>
+								<h3>Cohort</h3>
+								<span>July 2026</span>
+							</div>
+						</section>
+					</section>
+				</div>
+			</section>
+			<footer id="footer">
+				<div class="inner">
+					<ul class="icons">
+						<li><a href="https://github.com/adilaljasmi" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+						<li><a href="mailto:adilsahrabghulam@outlook.com" class="icon solid alt fa-envelope"><span class="label">Email</span></a></li>
+					</ul>
+					<ul class="copyright">
+						<li>&copy; Adil Aljasmi 2026</li><li>Design: <a href="https://html5up.net">HTML5 UP</a> (CC BY 3.0)</li><li>Academic e-portfolio</li>
+					</ul>
+				</div>
+			</footer>
+		</div>
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/jquery.scrolly.min.js"></script>
+		<script src="assets/js/jquery.scrollex.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+	</body>
+</html>
