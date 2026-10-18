@@ -18,3 +18,5 @@
 table td, table th { vertical-align: top; font-size: 0.9em; }
 .toc a { margin-right: 1em; }
 .note { font-size: 0.85em; opacity: 0.85; }
+.post { border: 1px solid rgba(255,255,255,0.15); padding: 1.5em 1.5em 0.5em 1.5em; margin: 1em 0 1.5em 0; background: rgba(255,255,255,0.02); }
+.post h4 { margin: 0.8em 0 0.4em 0; }
